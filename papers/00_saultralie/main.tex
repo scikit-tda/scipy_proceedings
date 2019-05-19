@@ -1,0 +1,210 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\usepackage{framed}
+
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+Scikit-TDA - A library of Python packages for Topological Data Analysis
+}
+
+%\author{ \parbox{3 in}{\centering Huibert Kwakernaak*
+%         \thanks{*Use the $\backslash$thanks command to put information here}\\
+%         Faculty of Electrical Engineering, Mathematics and Computer Science\\
+%         University of Twente\\
+%         7500 AE Enschede, The Netherlands\\
+%         {\tt\small h.kwakernaak@autsubmit.com}}
+%         \hspace*{ 0.5 in}
+%         \parbox{3 in}{ \centering Pradeep Misra**
+%         \thanks{**The footnote marks may be inserted manually}\\
+%        Department of Electrical Engineering \\
+%         Wright State University\\
+%         Dayton, OH 45435, USA\\
+%         {\tt\small pmisra@cs.wright.edu}}
+%}
+
+\author{Nathaniel Saul$^{1}$ and Christopher Tralie$^{2}$ and Leland McInnes$^{3}$% <-this % stops a space
+\thanks{*This work was not supported by any organization}% <-this % stops a space
+\thanks{$^{1}$Department of Mathematics and Statistics,
+        Washington State University
+        {\tt\small nathaniel.saul@wsu.edu}}%
+\thanks{$^{2}$P. Department of Computer Science(?)
+        Duke University,
+        {\tt\small email@address.edu}}%
+\thanks{$^{1}$H. Tutte Institute of Canada
+        {\tt\small email@address.edu}}%
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+This document will detail the main contributions and intentions of the Scikit-TDA Python library.
+
+We provide an overview of TDA and the typical analysis pipeline,
+description of some of the other common libraries and why scikit-tda is better, and a dichotomy of the library with descriptions of all included packages.
+
+\end{abstract}
+
+
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+
+There is a growing need for an ecosystem of TDA libraries that is approachable to non-experts in the fields of Algebraic Topology. 
+This project aims to provide a curated library for Python tools that are widely usable and easily approachable. 
+Each is easy to install through traditional Python mechanisms, portable to all platforms, requires no dependencies outside of what is available on Pypi, has comprehensive documentation, is open source, provides an issue tracker and is responsive to issues and questions, and exposes an intuitive API for developers familiar with the Python scientific computing ecosystem.
+
+Each project can stand alone, or be used as part of the scikit-tda bundle. This project curates the group of packages and houses extensive documentation and examples on how each package can be used together.
+
+Scikit-TDA is a home for compatible TDA libraries intended for non-researchers. We provide detailed documentation and unified APIs so that using TDA can be used in the wild.
+
+The TDA ecosystem is rapidly growing. Below is the list of current projects, either built or in development, to be included in scikit-tda.
+
+
+
+
+The TDA ecosystem is growing and confusing. Something about this stack overflow comment from not too long ago \cite{overflowPiyush}.
+
+\begin{quote}
+    Though there are many open source tools available for TDA ( javaplex, Gudhi, Dionysus ), the only problem is that all most all of these tools are currently in their nascent stage and poorly documented. 
+\end{quote}
+
+There are multiple libraries, each overlapping in many respects and providing their own perks. 
+
+Scikit-TDA's intention is not to bring the most cutting edge research of TDA techniques, rather provide strong and usable instances of the most well established tools. This is in contrast to other libraries that might be motivated foremost by the developer's research. This project plays role of curator.
+
+Inspired by Scikit-Learn, most packages from Scikit-TDA adopt a minimally object-oriented style. All structures input and returned are in the form of Python primatives or Numpy arrays, while objects are generally shortlived and disposable. This means that there is no need to strongly understand the underlying objects, only the interfaces to a few functions, and there is no need to build objects up \footnote{What I'm trying to say is this is different from almost every TDA library, needing to add \texttt{Simplex} objects one at a time to some \texttt{SimplicialComplex} object and then interprete the object in obnoxious ways very particular to the library, instead you just pass in a dictionary or numpy array and on the other side you ge ta dictionary or numpy array.} Object internals say internal.
+
+
+\section{BACKGROUND}
+
+
+We provide an overview of TDA and the typical analysis pipeline,
+
+
+
+Topological Data Analysis consists of two main tools, Persistent homology and Mapper.
+
+Mapper history \cite{singh2007topological}.
+For a great introduction to persistent homology \cite{ghrist2008barcodes}.
+
+
+\section{RELATED WORKS}
+description of some of the other common libraries and why scikit-tda is better
+
+
+\begin{enumerate}
+\item Guhdi - hard to install but is feature rich (is it supported on all platforms?)
+\item Javaplex - very easy interface to use, no Python
+\item Phat - great package with Python bindings (xoltar github fork), but only solves a piece of the puzzle. We make use of Phat when possible.
+\item Dionysus - straight forward to use, responsive issue tracker, 
+\item Ripser - only supplies a CLI out of the box, it is wrapped and incorporated
+\item Perseus - GNU license, no issue trackers or open source? CLI only?
+\item Greg's software, what's it called? Has to be used with Julia, is there Python bindings?
+\item (all the R tools)
+\end{enumerate}
+
+
+\section{LIBRARY DESIGN}
+
+The design of Scikit-TDA is inspired to two prominent libraries in the data science world, the TidyVerse and Scikit-Learn.  
+
+From Scikit-Learn, we adopt the clean, uniform, and established API for all of our projects (as much as possible) \cite{scikit-learn}. This allows developers fluent in the idioms of sklearn to quickly incorporate techniques from TDA into their workflow without learning many new idioms or patterns.
+
+From the TidyVerse, we adopt the structure of one governing package with many small and specific tools, all designed to interact together.
+We believe this design is the right choice because of the new nature of TDA, many new algorithms and techniques are being developed. 
+By keeping entire systems self contained behind a clean interface, we allow for \emph{hot swapping} of libraries and algorithms.  
+This also produces considerably less stress on the scikit-TDA project, as each individual library can move it its own pace with its own developers.
+
+
+\section{PACKAGES}
+
+Scikit-TDA consists of 6 different packages, each responsible for a small piece of the TDA ecosystem.
+
+\begin{itemize}
+    \item Kepler Mapper - Mapper implementation \cite{KeplerMapper2017}.
+    \item Ripser.py - Super fast rips cohomology with sublevelset filtrations too.
+    \item Persim - Persistence Images, in batch too.
+    \item TaDAsets - Constructors for data sets nice for demonstrating TDA benefits.
+    \item Perspect - Persistence Diagram 
+\end{itemize}
+
+\subsection{Kepler Mapper}
+
+Implementation of the Mapper algorithm \cite{singh2007topological}.
+
+\subsection{RIPSER.PY}
+
+\begin{framed}
+this entire section should be turned into its own JOSS submission.
+\end{framed}
+
+We provide a renovated Python implementation of the Ripser package.  Because of the sheer speed of Ripser, it has created a large user base. The library as stands is only as a command line tool. Multiple efforts have been made to wrap the C++ library for use in other languages.  TDAstats\footnote{cite correctly: https://github.com/rrrlw/TDAstats} supplies an R interface, Ripser.jl\footnote{https://github.com/mtsch/Ripser.jl} provides a wrapper for Julia, wrapper, and this library provides a Python wrapper. 
+
+As in the spirit of the rest of Scikit-TDA, we provide a a object-oriented interface designed to fit within the Scikit-Learn transformer paradigm \cite{scikit-learn} as well as expose a lightweight functional interface.
+
+\subsection{Persim}
+
+Currently implements the Persistence Images \cite{adams2017persistence}.
+
+\subsection{Perspect}
+
+\textbf{FUTURE} \texttt{Perspect} will eventual provide an implementation of Wasserstein and Bottleneck distances as detailed in \cite{kerber2017geometry}. It might also contain visualization routines such as the \texttt{plot\_dgms}, \texttt{PersImages}, and other representations such as persistent landscapes. 
+
+\subsection{TaDAsets}
+
+TaDAsets is a small library designed to provide constructors for data sets particularly interesting to a topologist. These data sets have known homologies, but varying magnitudes or noise, orientation, and size. 
+This package can be thought of as an extension of scikit-learn's \texttt{datasets} module.
+
+\section{CONTRIBUTIONS}
+
+We warmly welcome and encourage contributions to all of Scikit-TDA, either in the form of adding new projects or contributing to existing ones. 
+
+\section{CONCLUSIONS}
+
+Scikit-TDA is a library of special purpose tools, all designed and currated to fit together and be natural for Python developers and researchers. This library would be suitable for students learning the fundamentals of Topological Data Analysis, as well as researchers exploring the applicability of these methods for their own research.
+
+These tools are not necessarily intended for researchers of Applied Topology or Topological Data Analysis to use. For specialists in the field, more customized and flexible tools might be more usable. Rather than building blocks for TDA algorithms, such as the PHAT library supplies, we provide complete and usable solutions that work out of the box with little need for expertise in the field or in expertise in software development.
+
+% \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+
+
+\bibliography{scikit} 
+\bibliographystyle{ieeetr}
+
+
+\end{document}
