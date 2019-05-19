@@ -74,11 +74,11 @@ Packages
 Scikit-TDA consists of 6 different packages, each responsible for a small piece of the TDA ecosystem.
 
 
-- Kepler Mapper - Mapper implementation :cite:`KeplerMapper2017`.
-- Ripser.py - Super fast rips cohomology with sublevelset and cocycles (cite ripser.py)
-- Cechmate - 
-- Persim - Persistence Images, in batch too.
-- TaDAsets - Constructors for data sets nice for demonstrating TDA benefits.
+- Kepler Mapper: Mapper implementation :cite:`KeplerMapper2017`.
+- Ripser.py: Super fast rips cohomology with sublevelset and cocycles (cite ripser.py)
+- Cechmate: 
+- Persim: Persistence Images, in batch too.
+- TaDAsets: Constructors for data sets nice for demonstrating TDA benefits.
 
 
 Kepler Mapper
@@ -97,12 +97,19 @@ As in the spirit of the rest of Scikit-TDA, we provide a a object-oriented inter
 Cechmate
 ~~~~~~~~~~
 
+Uses qhull instead of CGAL and so is still very fast even though it is a Python implementation.
+
+It implements a unified interface for constructing Alpha, Cech, and Vietoris-Rips filtrations and can be extended to support any boundary matrix reducer. It is currently provisioned to use Phat for the boundary matrix reductions, which is a library designed for only doing boundary matrix reductions and has convenient Python bindings (cite Phat and python bindings).
+
 Persim
 ~~~~~~~~~
 
-Currently implements the Persistence Images :cite:`adams2017persistence`.
+The namesake of this package comes from the Persistence Images :cite:`adams2017persistence`, but it has since expanded to house all algorithms related to processing peristence diagrams.
 
-And now all the distances that we have
+- Persistence Images
+- Sliced Wasserstein distance
+- Bottleneck distance
+- Heat distance
 
 
 TaDAsets
@@ -110,6 +117,21 @@ TaDAsets
 
 TaDAsets is a small library designed to provide constructors for data sets particularly interesting to a topologist. These data sets have known homologies, but varying magnitudes or noise, orientation, and size. 
 This package can be thought of as an extension of scikit-learn's `datasets` module.
+
+Examples
+-----------
+
+
+A few brief code snippets with explanation and plots?
+
+
+
+Speed comparisons
+---------------------
+
+Note: It would be nice to have some comparison of Ripser.py, Cechmate, Ripser, and Guhdi on a couple of data sets. This might be out of scope though.  I haven't been able to get Guhdi working on my machine, so it'd be all you chris.
+
+
 
 
 
