@@ -2,6 +2,7 @@
 :email: nat@riverasaul.com
 :institution: Department of Mathematics, Washington State University Vancouver
 :institution: New Relic
+:corresponding:
 
 :author: Christopher Tralie
 :email: abc
@@ -10,7 +11,6 @@
 :author: HJ van Veen
 :email: abc
 :institution: abc
-
 :bibliography: scikit
 
 ------------------------------------------------------------------
@@ -60,12 +60,12 @@ Library Design
 
 The design of Scikit-TDA is inspired to two prominent libraries in the data science world, the TidyVerse and Scikit-Learn.  
 
-From Scikit-Learn, we adopt the clean, uniform, and established API for all of our projects (as much as possible) \cite{scikit-learn}. This allows developers fluent in the idioms of sklearn to quickly incorporate techniques from TDA into their workflow without learning many new idioms or patterns.
+From Scikit-Learn, we adopt the clean, uniform, and established API for all of our projects (as much as possible) :cite:`scikit-learn`. This allows developers fluent in the idioms of `sklearn` to quickly incorporate techniques from TDA into their workflow without learning many new idioms or patterns.
 
 From the TidyVerse, we adopt the structure of one governing package with many small and specific tools, all designed to interact together.
 We believe this design is the right choice because of the new nature of TDA, many new algorithms and techniques are being developed. 
-By keeping entire systems self contained behind a clean interface, we allow for \emph{hot swapping} of libraries and algorithms.  
-This also produces considerably less stress on the scikit-TDA project, as each individual library can move it its own pace with its own developers.
+By keeping entire systems self contained behind a clean interface, we allow for **hot swapping** of libraries and algorithms.  
+This also produces considerably less stress on the Scikit-TDA project, as each individual library can move it its own pace with its own developers.
 
 
 Packages
@@ -74,22 +74,20 @@ Packages
 Scikit-TDA consists of 6 different packages, each responsible for a small piece of the TDA ecosystem.
 
 
-- Kepler Mapper - Mapper implementation \cite{KeplerMapper2017}.
-- Ripser.py - Super fast rips cohomology with sublevelset filtrations too.
+- Kepler Mapper - Mapper implementation :cite:`KeplerMapper2017`.
+- Ripser.py - Super fast rips cohomology with sublevelset and cocycles (cite ripser.py)
 - Cechmate - 
 - Persim - Persistence Images, in batch too.
 - TaDAsets - Constructors for data sets nice for demonstrating TDA benefits.
 
 
-
-
 Kepler Mapper
-===============
+~~~~~~~~~~~~~~~
 
-Implementation of the Mapper algorithm \cite{singh2007topological}.
+Implementation of the Mapper algorithm :cite:`singh2007topological`.
 
 Riper.py
-============
+~~~~~~~~~
 
 
 We provide a renovated Python implementation of the Ripser package.  Because of the sheer speed of Ripser, it has created a large user base. The library as stands is only as a command line tool. Multiple efforts have been made to wrap the C++ library for use in other languages.  TDAstats\footnote{cite correctly: https://github.com/rrrlw/TDAstats} supplies an R interface, Ripser.jl\footnote{https://github.com/mtsch/Ripser.jl} provides a wrapper for Julia, wrapper, and this library provides a Python wrapper. 
@@ -97,21 +95,21 @@ We provide a renovated Python implementation of the Ripser package.  Because of 
 As in the spirit of the rest of Scikit-TDA, we provide a a object-oriented interface designed to fit within the Scikit-Learn transformer paradigm \cite{scikit-learn} as well as expose a lightweight functional interface.
 
 Cechmate
-===========
+~~~~~~~~~~
 
 Persim
-=========
+~~~~~~~~~
 
-Currently implements the Persistence Images \cite{adams2017persistence}.
+Currently implements the Persistence Images :cite:`adams2017persistence`.
 
 And now all the distances that we have
 
 
 TaDAsets
-=============
+~~~~~~~~~
 
 TaDAsets is a small library designed to provide constructors for data sets particularly interesting to a topologist. These data sets have known homologies, but varying magnitudes or noise, orientation, and size. 
-This package can be thought of as an extension of scikit-learn's \texttt{datasets} module.
+This package can be thought of as an extension of scikit-learn's `datasets` module.
 
 
 
