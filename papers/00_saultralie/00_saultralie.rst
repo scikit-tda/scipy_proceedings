@@ -4,18 +4,18 @@
 :institution: New Relic
 
 :author: Christopher Tralie
-:email: ___
-:institution: ____
+:email: abc
+:institution: abc
 
 :author: HJ van Veen
-:email: ____
-:institution: 
+:email: abc
+:institution: abc
 
 :bibliography: scikit
 
-----------------------------------------------------
-Topological Data Analysis for the Python ecosystem.
-----------------------------------------------------
+------------------------------------------------------------------
+Scikit-TDA: Topological Data Analysis for the Python ecosystem.
+------------------------------------------------------------------
 
 .. class:: abstract
 
@@ -44,263 +44,82 @@ Test ref: :cite:`kerber2017geometry`.
 
 
 
-Bibliographies, citations and block quotes
-------------------------------------------
+Background
+-----------
 
-If you want to include a ``.bib`` file, do so above by placing  :code:`:bibliography: yourFilenameWithoutExtension` as above (replacing ``mybib``) for a file named :code:`yourFilenameWithoutExtension.bib` after removing the ``.bib`` extension. 
 
-**Do not include any special characters that need to be escaped or any spaces in the bib-file's name**. Doing so makes bibTeX cranky, & the rst to LaTeX+bibTeX transform won't work. 
+Topological Data Analysis consists of two main tools, Persistent homology and Mapper.
 
-To reference citations contained in that bibliography use the :code:`:cite:`citation-key`` role, as in :cite:`hume48` (which literally is :code:`:cite:`hume48`` in accordance with the ``hume48`` cite-key in the associated ``mybib.bib`` file).
+Mapper history :cite:`singh2007topological`.
+For a great introduction to persistent homology :cite:`ghrist2008barcodes`.
 
-However, if you use a bibtex file, this will overwrite any manually written references. 
 
-So what would previously have registered as a in text reference ``[Atr03]_`` for 
 
-:: 
+Library Design
+----------------
 
-     [Atr03] P. Atreides. *How to catch a sandworm*,
-           Transactions on Terraforming, 21(3):261-300, August 2003.
+The design of Scikit-TDA is inspired to two prominent libraries in the data science world, the TidyVerse and Scikit-Learn.  
 
-what you actually see will be an empty reference rendered as **[?]**.
+From Scikit-Learn, we adopt the clean, uniform, and established API for all of our projects (as much as possible) \cite{scikit-learn}. This allows developers fluent in the idioms of sklearn to quickly incorporate techniques from TDA into their workflow without learning many new idioms or patterns.
 
-E.g., [Atr03]_.
+From the TidyVerse, we adopt the structure of one governing package with many small and specific tools, all designed to interact together.
+We believe this design is the right choice because of the new nature of TDA, many new algorithms and techniques are being developed. 
+By keeping entire systems self contained behind a clean interface, we allow for \emph{hot swapping} of libraries and algorithms.  
+This also produces considerably less stress on the scikit-TDA project, as each individual library can move it its own pace with its own developers.
 
 
-If you wish to have a block quote, you can just indent the text, as in 
+Packages
+------------
 
-    When it is asked, What is the nature of all our reasonings concerning matter of fact? the proper answer seems to be, that they are founded on the relation of cause and effect. When again it is asked, What is the foundation of all our reasonings and conclusions concerning that relation? it may be replied in one word, experience. But if we still carry on our sifting humor, and ask, What is the foundation of all conclusions from experience? this implies a new question, which may be of more difficult solution and explication. :cite:`hume48`
+Scikit-TDA consists of 6 different packages, each responsible for a small piece of the TDA ecosystem.
 
-Dois in bibliographies
-++++++++++++++++++++++
 
-In order to include a doi in your bibliography, add the doi to your bibliography
-entry as a string. For example:
+- Kepler Mapper - Mapper implementation \cite{KeplerMapper2017}.
+- Ripser.py - Super fast rips cohomology with sublevelset filtrations too.
+- Cechmate - 
+- Persim - Persistence Images, in batch too.
+- TaDAsets - Constructors for data sets nice for demonstrating TDA benefits.
 
-.. code-block:: bibtex
 
-   @Book{hume48,
-     author =  "David Hume",
-     year =    "1748",
-     title =   "An enquiry concerning human understanding",
-     address =     "Indianapolis, IN",
-     publisher =   "Hackett",
-     doi = "10.1017/CBO9780511808432",
-   }
 
 
-If there are errors when adding it due to non-alphanumeric characters, see if
-wrapping the doi in ``\detokenize`` works to solve the issue.
+Kepler Mapper
+===============
 
-.. code-block:: bibtex
+Implementation of the Mapper algorithm \cite{singh2007topological}.
 
-   @Book{hume48,
-     author =  "David Hume",
-     year =    "1748",
-     title =   "An enquiry concerning human understanding",
-     address =     "Indianapolis, IN",
-     publisher =   "Hackett",
-     doi = \detokenize{10.1017/CBO9780511808432},
-   }
+Riper.py
+============
 
-Source code examples
---------------------
 
-Of course, no paper would be complete without some source code.  Without
-highlighting, it would look like this::
+We provide a renovated Python implementation of the Ripser package.  Because of the sheer speed of Ripser, it has created a large user base. The library as stands is only as a command line tool. Multiple efforts have been made to wrap the C++ library for use in other languages.  TDAstats\footnote{cite correctly: https://github.com/rrrlw/TDAstats} supplies an R interface, Ripser.jl\footnote{https://github.com/mtsch/Ripser.jl} provides a wrapper for Julia, wrapper, and this library provides a Python wrapper. 
 
-   def sum(a, b):
-       """Sum two numbers."""
+As in the spirit of the rest of Scikit-TDA, we provide a a object-oriented interface designed to fit within the Scikit-Learn transformer paradigm \cite{scikit-learn} as well as expose a lightweight functional interface.
 
-       return a + b
+Cechmate
+===========
 
-With code-highlighting:
+Persim
+=========
 
-.. code-block:: python
+Currently implements the Persistence Images \cite{adams2017persistence}.
 
-   def sum(a, b):
-       """Sum two numbers."""
+And now all the distances that we have
 
-       return a + b
 
-Maybe also in another language, and with line numbers:
+TaDAsets
+=============
 
-.. code-block:: c
-   :linenos:
+TaDAsets is a small library designed to provide constructors for data sets particularly interesting to a topologist. These data sets have known homologies, but varying magnitudes or noise, orientation, and size. 
+This package can be thought of as an extension of scikit-learn's \texttt{datasets} module.
 
-   int main() {
-       for (int i = 0; i < 10; i++) {
-           /* do something */
-       }
-       return 0;
-   }
 
-Or a snippet from the above code, starting at the correct line number:
 
-.. code-block:: c
-   :linenos:
-   :linenostart: 2
+Conclusion
+------------
 
-   for (int i = 0; i < 10; i++) {
-       /* do something */
-   }
- 
-Important Part
---------------
 
-It is well known [Atr03]_ that Spice grows on the planet Dune.  Test
-some maths, for example :math:`e^{\pi i} + 3 \delta`.  Or maybe an
-equation on a separate line:
+Scikit-TDA is a library of special purpose tools, all designed and currated to fit together and be natural for Python developers and researchers. This library would be suitable for students learning the fundamentals of Topological Data Analysis, as well as researchers exploring the applicability of these methods for their own research.
 
-.. math::
-
-   g(x) = \int_0^\infty f(x) dx
-
-or on multiple, aligned lines:
-
-.. math::
-   :type: eqnarray
-
-   g(x) &=& \int_0^\infty f(x) dx \\
-        &=& \ldots
-
-The area of a circle and volume of a sphere are given as
-
-.. math::
-   :label: circarea
-
-   A(r) = \pi r^2.
-
-.. math::
-   :label: spherevol
-
-   V(r) = \frac{4}{3} \pi r^3
-
-We can then refer back to Equation (:ref:`circarea`) or
-(:ref:`spherevol`) later.
-
-Mauris purus enim, volutpat non dapibus et, gravida sit amet sapien. In at
-consectetur lacus. Praesent orci nulla, blandit eu egestas nec, facilisis vel
-lacus. Fusce non ante vitae justo faucibus facilisis. Nam venenatis lacinia
-turpis. Donec eu ultrices mauris. Ut pulvinar viverra rhoncus. Vivamus
-adipiscing faucibus ligula, in porta orci vehicula in. Suspendisse quis augue
-arcu, sit amet accumsan diam. Vestibulum lacinia luctus dui. Aliquam odio arcu,
-faucibus non laoreet ac, condimentum eu quam. Quisque et nunc non diam
-consequat iaculis ut quis leo. Integer suscipit accumsan ligula. Sed nec eros a
-orci aliquam dictum sed ac felis. Suspendisse sit amet dui ut ligula iaculis
-sollicitudin vel id velit. Pellentesque hendrerit sapien ac ante facilisis
-lacinia. Nunc sit amet sem sem. In tellus metus, elementum vitae tincidunt ac,
-volutpat sit amet mauris. Maecenas [#]_ diam turpis, placerat [#]_ at adipiscing ac,
-pulvinar id metus.
-
-.. [#] On the one hand, a footnote.
-.. [#] On the other hand, another footnote.
-
-.. figure:: figure1.png
-
-   This is the caption. :label:`egfig`
-
-.. figure:: figure1.png
-   :align: center
-   :figclass: w
-
-   This is a wide figure, specified by adding "w" to the figclass.  It is also
-   center aligned, by setting the align keyword (can be left, right or center).
-
-.. figure:: figure1.png
-   :scale: 20%
-   :figclass: bht
-
-   This is the caption on a smaller figure that will be placed by default at the
-   bottom of the page, and failing that it will be placed inline or at the top.
-   Note that for now, scale is relative to a completely arbitrary original
-   reference size which might be the original size of your image - you probably
-   have to play with it. :label:`egfig2`
-
-As you can see in Figures :ref:`egfig` and :ref:`egfig2`, this is how you reference auto-numbered
-figures.
-
-.. table:: This is the caption for the materials table. :label:`mtable`
-
-   +------------+----------------+
-   | Material   | Units          |
-   +============+================+
-   | Stone      | 3              |
-   +------------+----------------+
-   | Water      | 12             |
-   +------------+----------------+
-   | Cement     | :math:`\alpha` |
-   +------------+----------------+
-
-
-We show the different quantities of materials required in Table
-:ref:`mtable`.
-
-
-.. The statement below shows how to adjust the width of a table.
-
-.. raw:: latex
-
-   \setlength{\tablewidth}{0.8\linewidth}
-
-
-.. table:: This is the caption for the wide table.
-   :class: w
-
-   +--------+----+------+------+------+------+--------+
-   | This   | is |  a   | very | very | wide | table  |
-   +--------+----+------+------+------+------+--------+
-
-Unfortunately, restructuredtext can be picky about tables, so if it simply
-won't work try raw LaTeX:
-
-
-.. raw:: latex
-
-   \begin{table*}
-
-     \begin{longtable*}{|l|r|r|r|}
-     \hline
-     \multirow{2}{*}{Projection} & \multicolumn{3}{c|}{Area in square miles}\tabularnewline
-     \cline{2-4}
-      & Large Horizontal Area & Large Vertical Area & Smaller Square Area\tabularnewline
-     \hline
-     Albers Equal Area  & 7,498.7 & 10,847.3 & 35.8\tabularnewline
-     \hline
-     Web Mercator & 13,410.0 & 18,271.4 & 63.0\tabularnewline
-     \hline
-     Difference & 5,911.3 & 7,424.1 & 27.2\tabularnewline
-     \hline
-     Percent Difference & 44\% & 41\% & 43\%\tabularnewline
-     \hline
-     \end{longtable*}
-
-     \caption{Area Comparisons \DUrole{label}{quanitities-table}}
-
-   \end{table*}
-
-Perhaps we want to end off with a quote by Lao Tse [#]_:
-
-  *Muddy water, let stand, becomes clear.*
-
-.. [#] :math:`\mathrm{e^{-i\pi}}`
-
-.. Customised LaTeX packages
-.. -------------------------
-
-.. Please avoid using this feature, unless agreed upon with the
-.. proceedings editors.
-
-.. ::
-
-..   .. latex::
-..      :usepackage: somepackage
-
-..      Some custom LaTeX source here.
-
-References
-----------
-.. [Atr03] P. Atreides. *How to catch a sandworm*,
-           Transactions on Terraforming, 21(3):261-300, August 2003.
-
+These tools are not necessarily intended for researchers of Applied Topology or Topological Data Analysis to use. For specialists in the field, more customized and flexible tools might be more usable. Rather than building blocks for TDA algorithms, such as the PHAT library supplies, we provide complete and usable solutions that work out of the box with little need for expertise in the field or in expertise in software development.
 
