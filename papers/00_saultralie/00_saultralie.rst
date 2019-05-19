@@ -1,62 +1,47 @@
-:author: Gaius Caesar
-:email: jj@rome.it
-:institution: Senate House, S.P.Q.R.
-:institution: Egyptian Embassy, S.P.Q.R.
+:author: Nathaniel Rivera Saul
+:email: nat@riverasaul.com
+:institution: Department of Mathematics, Washington State University Vancouver
+:institution: New Relic
 
-:author: Mark Anthony
-:email: mark37@rome.it
-:institution: Egyptian Embassy, S.P.Q.R.
+:author: Christopher Tralie
+:email: ___
+:institution: ____
 
-:author: Jarrod Millman
-:email: millman@rome.it
-:institution: Egyptian Embassy, S.P.Q.R.
-:institution: Yet another place, S.P.Q.R.
+:author: HJ van Veen
+:email: ____
+:institution: 
 
-:author: Brutus
-:email: brutus@rome.it
-:institution: Unaffiliated
-:bibliography: mybib
+:bibliography: scikit
 
-
-:video: http://www.youtube.com/watch?v=dhRUe-gz690
-
-------------------------------------------------
-A Numerical Perspective to Terraforming a Desert
-------------------------------------------------
+----------------------------------------------------
+Topological Data Analysis for the Python ecosystem.
+----------------------------------------------------
 
 .. class:: abstract
 
-   A short version of the long version that is way too long to be written as a
-   short version anyway.  Still, when considering the facts from first
-   principles, we find that the outcomes of this introspective approach is
-   compatible with the guidelines previously established.
+Scikit-TDA is a new suite of Python libraries that provide implementations of the major algorithms from Topological Data Analysis. With easy installation, an intuitive interface, and comprehensive documentation, Scikit-TDA allows data scientists and academic researchers alike to explore the application of Topological Data Analysis to their favorite data. 
 
-   In such an experiment it is then clear that the potential for further
-   development not only depends on previous relationships found but also on
-   connections made during exploitation of this novel new experimental
-   protocol.
 
 .. class:: keywords
 
-   terraforming, desert, numerical perspective
+   Topological Data Analysis, Mapper, filtrations, homology
 
 Introduction
 ------------
 
-Twelve hundred years ago  |---| in a galaxy just across the hill...
+There is a growing need for an ecosystem of TDA libraries that is approachable to non-experts in the fields of Algebraic Topology. 
+This project aims to provide a curated library for Python tools that are widely usable and easily approachable. 
+Each is easy to install through traditional Python mechanisms, portable to all platforms, requires no dependencies outside of what is available on Pypi, has comprehensive documentation, is open source, provides an issue tracker and is responsive to issues and questions, and exposes an intuitive API for developers familiar with the Python scientific computing ecosystem.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien
-tortor, bibendum et pretium molestie, dapibus ac ante. Nam odio orci, interdum
-sit amet placerat non, molestie sed dui. Pellentesque eu quam ac mauris
-tristique sodales. Fusce sodales laoreet nulla, id pellentesque risus convallis
-eget. Nam id ante gravida justo eleifend semper vel ut nisi. Phasellus
-adipiscing risus quis dui facilisis fermentum. Duis quis sodales neque. Aliquam
-ut tellus dolor. Etiam ac elit nec risus lobortis tempus id nec erat. Morbi eu
-purus enim. Integer et velit vitae arcu interdum aliquet at eget purus. Integer
-quis nisi neque. Morbi ac odio et leo dignissim sodales. Pellentesque nec nibh
-nulla. Donec faucibus purus leo. Nullam vel lorem eget enim blandit ultrices.
-Ut urna lacus, scelerisque nec pellentesque quis, laoreet eu magna. Quisque ac
-justo vitae odio tincidunt tempus at vitae tortor.
+Each project can stand alone, or be used as part of the scikit-tda bundle. This project curates the group of packages and houses extensive documentation and examples on how each package can be used together.
+
+Scikit-TDA is a home for compatible TDA libraries intended for non-researchers. We provide detailed documentation and unified APIs so that using TDA can be used in the wild.
+
+The TDA ecosystem is rapidly growing. Below is the list of current projects, either built or in development, to be included in scikit-tda.
+
+
+Test ref: :cite:`kerber2017geometry`.
+
 
 
 Bibliographies, citations and block quotes
